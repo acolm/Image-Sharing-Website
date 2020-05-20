@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="logo">
+        <h1>Photos</h1>
+    </div>
+    <header>
+        <div class="container">
+            <nav>
+              <ul>
+                <li><a href="/"><b>Home</b></a></li>
+                <li><a href="/postimage"><b>Post</b></a></li>
+                <li><a href="/login"><b>Login</b></a></li>
+              </ul>
+            </nav>
+          </div>
+    </header>
+    <br />
+    <div class="old-header">
+        <h2>Sign In</h2>
+    </div>
+    <br />
+    <form
+        method="POST"
+        action="/users/login"
+        enctype="application/x-www-form-urlencoded"
+    >
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="username-lbl">Username:</label>
+            </div>
+            <div>
+                <input required id="username" type="text" class="textbox" placeholder="Username" name="username" />
+            </div>
+            <div class="grid-item">
+                <label for="password">Password:</label>
+            </div>
+            <div>
+                <input required id="password" type="password" class="textbox" placeholder="Password" name="password" />
+            </div>
+            <div>
+                <input class="submit" type="submit" value="Submit">
+            </div>
+            <div>
+                <input class="cancel" type="button" value="Cancel">
+            </div>
+        </div>
+    </form>
+    <div>
+        <p>Don't have an account?
+        <a href="/registration">Become A User!</a>
+        </p>
+    </div>
+</body>
+</html>

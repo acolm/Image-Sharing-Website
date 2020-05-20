@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <title>Image Post</title>
+</head>
+<body>
+    <div class="logo">
+        <h1>Photos</h1>
+    </div>
+    <header>
+        <div class="container">
+            <nav>
+              <ul>
+                <li><a href="/"><b>Home</b></a></li>
+                <li><a href="/postimage"><b>Post</b></a></li>
+                <li><a href="/login"><b>Login</b></a></li>
+              </ul>
+            </nav>
+          </div>
+    </header>
+    <br />
+    <article>
+        <div class="old-header">
+            <h2>Post Image</h2>
+        </div>
+        <br />
+        <form>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="title">Title</label>
+                </div>
+                <div>
+                    <input required id="title" type="text" class="textbox" placeholder="Name Your Post"/>
+                </div>
+                <div class="grid-item">
+                    <label for="descrip">Description:</label>
+                </div>
+                <div>
+                    <input required id="descrip" type="text" class="textbox" placeholder="What Is It?"/>
+                </div>
+                <div class="grid-item">
+                    <label required id="image">Input Image</label>
+                </div>
+                <div class="grid-item-extra">
+                    <input for="image"  type="file">
+                </div>
+                <label for="policy">Follows Acceptable Use Policy</label>
+                <input required id ="policy" type="checkbox">
+                <div>
+                    <input class="submit" type="submit" value="Submit">
+                </div>
+                <div>
+                    <input class="cancel" type="button" value="Cancel">
+                </div>
+            </div>
+        </form>
+    </article>
+</body>
+</html>

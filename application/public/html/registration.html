@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <title>Registration</title>
+</head>
+<body>
+    <div class="logo">
+        <h1>Photos</h1>
+    </div>
+    <header>
+        <div class="container">
+            <nav>
+              <ul>
+                <li><a href="/"><b>Home</b></a></li>
+                <li><a href="/postimage"><b>Post</b></a></li>
+                <li><a href="/login"><b>Login</b></a></li>
+              </ul>
+            </nav>
+          </div>
+    </header>
+    <br />
+    <div class="old-header">
+        <h2>Registration Form</h2>
+    </header>
+    <br />
+    <form
+        method ="POST"
+        action="/users/register"
+        enctype="application/x-www-form-urlencoded"
+    >
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="username-lbl">Username:</label>
+            </div>
+            <div>
+                <input required id="username" type="text" class="textbox" placeholder="Username" name="username" />
+            </div>
+            <div class="grid-item">
+                <label for="email">Email:</label>
+            </div>
+            <div>
+                <input required id="email" type="email" class="textbox" placeholder="Email" name="email" />
+            </div>
+            <div class="grid-item">
+                <label for="password">Password:</label>
+            </div>
+            <div>
+                <input required id="password" type="password" class="textbox" placeholder="Password" name="password" />
+            </div>
+            <div class="grid-item">
+                <label for="cpassword">Confirm Password:</label>
+            </div>
+            <div>
+                <input required id="cpassword" type="password" class="textbox" placeholder="Confirm Password"/>
+            </div>
+            <label for="check">You are at least 13 years old</label>
+            <input required id="check" type="checkbox">
+            <a href="">TOS and Privacy Rules</a>
+            <input required id ="tos" type="checkbox">
+            <div>
+                <input class="submit" type="submit" value="Submit">
+            </div>
+            <div>
+                <input class="cancel" type="button" value="Cancel">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
