@@ -2,6 +2,7 @@
 
 <head>
   <title>Express</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
   <script defer scr="/public/js/frontendjs.js"></script>
@@ -14,11 +15,19 @@
   <header>
     <div class="container">
       <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/postimage">Post</a></li>
-          <li><a href="/login" id="authenticate-button" name="nav-items anchor-buttons">Login</a></li>
-        </ul>
+        <div class="menu-area">
+          <ul>
+            <li><a href="/" class="home">Home</a></li>
+            <li>
+              <input id="search-text" name="" type="text" />
+              <div id="text-bar-icon">
+                <i class="fas fa-search"></i>
+              </div>
+            </li>
+            <li><a href="/postimage">Post</a></li>
+            <li><a href="/login" id="authenticate-button" name="nav-items anchor-buttons">Login</a></li>
+          </ul>
+        </div>
       </nav>
     </div>
   </header>
@@ -27,6 +36,29 @@
   <div>
     <div></div>
   </div>
+  <script>
+    function createCard(data){
+      return `<div> id=post-${data.id} class="card"> \
+                <img> class="card-image" src="${data.thumbnail}"> \
+                <div class="card-body"> \
+                  <p class="card-title">${data.title}</p> \
+                  <p class="card-text">${data.description}</p> \
+                  <a href="/imagepost/"${data.id}" class="anchor-buttons">Details</a> \
+                </div> \
+              </div>`;
+    }
+    function runSearch() {
+      let searchTerm = document.getElementById('search-text').value;
+      let searchURL = 'http://localhost:3000/posts/search/'+searchTerm;
+      console.log(searchURL);
+      fetch(searchURL)
+      .then((data) => data.json())
+      .then((dataAsObject) => {
+        console.log(dataAsObject);
+      })
+      .catch((err) => {console.log(err)});
+    }
+    document.getElementById('text-bar-icon').onclick = runSearch;
+  </script>
 </body>
-
 </html>

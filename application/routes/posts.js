@@ -51,4 +51,18 @@ router.post('/createPost', uploader.single('uploadImage') ,(req, resp, next) => 
     
 });
 
+router.get('/search/:searchTerm', (req, resp, next) => {
+    let searchTerm = req.params.searchTerm;
+    let _sql = 'SELECT p.id, p.title, p.description, p.thumbnail, u.username \
+    FROM posts p \
+    JOIN users u on p.fk_userid=u.id \
+    WHERE title LIKE ?;';
+    searchTerm = "%"+searchTerm+"%";
+    db.query(_sql, [searchTerm])
+    .then(([results, fields]) => {
+        resp.json(results);
+    })
+    .catch((err) => next(err));
+})
+
 module.exports = router;

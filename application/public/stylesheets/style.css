@@ -32,29 +32,71 @@ header::after {
 }
 
 nav {
-float: right;
-
+float: center;
+width: 100%;
+height: 100%;
 }
 
-nav ul {
+.menu-are {
+  width: 100%;
+  overflow: auto;
+}
+
+.menu-area ul {
   list-style: none;
-  margin: 0;
-  padding: 8px;
+  margin: 0px;
+  padding: 0;
 }
 
-nav li {
-  display: inline-block;
-  margin: 12px 20px 12px 20px;
+.menu-area ul li {
+  float: left;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-nav a {
+ a {
   text-decoration: none;
   color: white;
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
   font-weight: bold;
+  margin: 15px 20px 0px 20px;
+  display: block;
+  text-align: center;
 }
 
 nav a:hover {
-  color: #cfcfcf;
+  color: #5572bd;
+}
+
+.contain-search {
+  height:100%;
+  justify-content: start;
+}
+
+#search-text {
+  width: 400px;
+  height: 75%;
+  display: flex;
+  margin:7px 7px 0 0;
+  padding:none;
+  border:none;
+  font-size:18px;
+}
+
+#text-bar-icon{
+  background-color: #5572bd;
+  width: 10%;
+  height: 75%;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  margin:7px 0 0 0;
+}
+
+#text-bar-icon .fas{
+  position: absolute;
+  top:50%;
+  left:50%;
 }
