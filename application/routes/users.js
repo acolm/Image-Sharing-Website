@@ -66,11 +66,15 @@ router.post("/register", (req, resp, next) => {
 router.post("/login", (req, resp, next) => {
   let username = req.body.username;
   let password = req.body.password;
+  let userID;
 
-  db.execute("SELECT password FROM users WHERE username=?",[username])
+  db.execute("SELECT id,password FROM users WHERE username=?",[username])
   .then(([results, fields]) => {
     if(results && results.length == 1){
       let hPassword = results[0].password;
+      //console.log(results);
+      //console.log(results[0]);
+      //userID = results[0].id;
       return bcrypt.compare(password, hPassword);
     }else{
       throw new UserError('username or password is incorrect','/login', 200);
@@ -79,6 +83,10 @@ router.post("/login", (req, resp, next) => {
   .then((check) => {
     if(check){
       successPrint('successful Login!');
+      req.session.username = username;
+      req.session.userID = userID;
+      req.session.save();
+      console.log(req.session);
       resp.redirect('/');
     }else{
       throw new UserError('username or password is incorrect','/login', 200);
@@ -95,4 +103,16 @@ router.post("/login", (req, resp, next) => {
   })
 });
 
+router.post('/logout', (req, resp, next) => {
+  req.session.destroy((err) => {
+    if(err){
+      errorPrint('Failed to destory session');
+      next(err);
+    }else{
+      successPrint('session was destroyed');
+      resp.clearCookie('csid');
+      resp.redirect('/login');
+    }
+  })
+});
 module.exports = router;

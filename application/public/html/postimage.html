@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <script defer scr="/public/js/frontendjs.js"></script>
     <title>Image Post</title>
 </head>
 <body>
@@ -15,9 +16,9 @@
         <div class="container">
             <nav>
               <ul>
-                <li><a href="/"><b>Home</b></a></li>
-                <li><a href="/postimage"><b>Post</b></a></li>
-                <li><a href="/login"><b>Login</b></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/postimage">Post</a></li>
+                <li><a href="/login" id="authenticate-button" name="nav-items anchor-buttons">Login</a></li>
               </ul>
             </nav>
           </div>
@@ -28,25 +29,30 @@
             <h2>Post Image</h2>
         </div>
         <br />
-        <form>
+        <form
+            id="post-image"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+        <!--action="/posts/createPost" -->
             <div class="grid-container">
                 <div class="grid-item">
                     <label for="title">Title</label>
                 </div>
                 <div>
-                    <input required id="title" type="text" class="textbox" placeholder="Name Your Post"/>
+                    <input required id="title" type="text" class="textbox" placeholder="Name Your Post" name="title"/>
                 </div>
                 <div class="grid-item">
                     <label for="descrip">Description:</label>
                 </div>
                 <div>
-                    <input required id="descrip" type="text" class="textbox" placeholder="What Is It?"/>
+                    <input required id="descrip" type="text" class="textbox" placeholder="What Is It?" name="description" />
                 </div>
                 <div class="grid-item">
                     <label required id="image">Input Image</label>
                 </div>
                 <div class="grid-item-extra">
-                    <input for="image"  type="file">
+                    <input id="img-select" for="image"  type="file" name="uploadImage" />
                 </div>
                 <label for="policy">Follows Acceptable Use Policy</label>
                 <input required id ="policy" type="checkbox">
@@ -59,5 +65,26 @@
             </div>
         </form>
     </article>
+    <script>
+        const _form = document.getElementById('post-image');
+        _form.onsubmit = function(event) {
+            event.preventDefault();
+            let _body = new FormData(_form);
+            fetch('/posts/createPost', {
+                body: _body,
+                method: "POST"
+            })
+            .then((data) => {
+                console.log(data);
+                return data.json();
+            })
+            .then((dataAsObject) => {
+                console.log(dataAsObject);
+                alert(dataAsObject.message);
+                location.replace(dataAsObject.redirect);
+            })
+            .catch(err => console.log(err));
+        }
+    </script>
 </body>
 </html>

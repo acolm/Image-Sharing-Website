@@ -19,8 +19,14 @@ Please follow the instructions below and fill in the information requested when 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
-2. steps here
+1. run npm i in the application folder
+2. npm install colors
+3. npm install mysql2
+4. npm bcrypt
+5. npm install express-session express-mysql-session
+6. npm i multer sharp
+8.
+9.
 
 ## Run Instructions
 1. steps here
