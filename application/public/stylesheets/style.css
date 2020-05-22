@@ -55,13 +55,13 @@ height: 100%;
   justify-content: space-between;
 }
 
- a {
+ li a {
   text-decoration: none;
   color: white;
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
   font-weight: bold;
-  margin: 15px 20px 0px 20px;
+  margin: 20px 20px 0px 20px;
   display: block;
   text-align: center;
 }
@@ -76,7 +76,7 @@ nav a:hover {
 }
 
 #search-text {
-  width: 400px;
+  width: 800px;
   height: 75%;
   display: flex;
   margin:7px 7px 0 0;
@@ -87,7 +87,7 @@ nav a:hover {
 
 #text-bar-icon{
   background-color: #5572bd;
-  width: 10%;
+  width: 7%;
   height: 75%;
   border-radius: 5px;
   position: relative;

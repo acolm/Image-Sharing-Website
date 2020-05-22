@@ -1,7 +1,6 @@
 <html>
-
 <head>
-  <title>Express</title>
+  <title>Photos</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
@@ -31,19 +30,16 @@
       </nav>
     </div>
   </header>
-  <h1>Express</h1>
-  <h2>Hello world, i am Aaron Colmenares</h2>
-  <div>
-    <div></div>
+  <div id="main-content">
   </div>
   <script>
     function createCard(data){
-      return `<div> id=post-${data.id} class="card"> \
-                <img> class="card-image" src="${data.thumbnail}"> \
+      return `<div id=post-${data.id} class="card"> \
+                <img class="card-image" src="${data.thumbnail}" /> \
                 <div class="card-body"> \
                   <p class="card-title">${data.title}</p> \
                   <p class="card-text">${data.description}</p> \
-                  <a href="/imagepost/"${data.id}" class="anchor-buttons">Details</a> \
+                  <a href="/posts/imagepost/${data.id}" class="anchor-buttons">Details</a> \
                 </div> \
               </div>`;
     }
@@ -55,10 +51,27 @@
       .then((data) => data.json())
       .then((dataAsObject) => {
         console.log(dataAsObject);
+        let _html = "";
+        dataAsObject.forEach((post) => {
+          _html += createCard(post);
+        })
+        document.getElementById('main-content').innerHTML = _html;
       })
-      .catch((err) => {console.log(err)});
+      .catch((err) => console.log(err));
     }
     document.getElementById('text-bar-icon').onclick = runSearch;
+
+    fetch('http://localhost:3000/posts/getRecentPosts/')
+      .then((data) => data.json())
+      .then((dataAsObject) => {
+        console.log(dataAsObject);
+        let _html = "";
+        dataAsObject.forEach((post) => {
+          _html += createCard(post);
+        })
+        document.getElementById('main-content').innerHTML = _html;
+      })
+      .catch((err) => console.log(err));
   </script>
 </body>
 </html>

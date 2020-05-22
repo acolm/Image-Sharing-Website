@@ -1,0 +1,72 @@
+#post-container {
+    display: grid;
+    margin-top: 5px;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    height: 50vh;
+}
+
+#image-post-image {
+    border: 1px solid #094074;
+    height:100%;
+    grid-area: 1 / 1 / 4 / 4;
+}
+
+#info-message-grid {
+    grid-area: 1 / 4 / 4 / 5;
+    border: 1px solid #094074;
+    height: 100%;
+}
+
+#info {
+    display: flex inline-block;
+    justify-content: start;
+}
+
+#info header{
+    background-color: #094074;
+    margin: none;
+    padding: 5px 0 12px 0;
+    grid-area: 6 / 6 / 7 / 7;
+}
+
+#info header h2 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.info-tags {
+    border: 1px solid #094074;
+}
+
+#image-post-author {
+    width: 100%;
+    border: 1px solid #094074;
+    color:black;
+    border-radius: 3px;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+#image-post-date {
+    width: 100%;
+    border: 1px solid #094074;
+    color: black;
+    border-radius: 3px;
+    border-top: none;
+}
+
+#image-post-desc {
+    width: 100%;
+    border: 1px solid #094074;
+    color:black;
+    text-align: left;
+}
+
+@media screen and (max-width: 600px){
+    #post-container{
+        grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    }
+}

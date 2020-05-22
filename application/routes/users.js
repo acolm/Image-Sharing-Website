@@ -72,9 +72,9 @@ router.post("/login", (req, resp, next) => {
   .then(([results, fields]) => {
     if(results && results.length == 1){
       let hPassword = results[0].password;
-      //console.log(results);
-      //console.log(results[0]);
-      //userID = results[0].id;
+      console.log(results);
+      console.log(results[0]);
+      userID = results[0].id;
       return bcrypt.compare(password, hPassword);
     }else{
       throw new UserError('username or password is incorrect','/login', 200);

@@ -56,11 +56,41 @@ router.get('/search/:searchTerm', (req, resp, next) => {
     let _sql = 'SELECT p.id, p.title, p.description, p.thumbnail, u.username \
     FROM posts p \
     JOIN users u on p.fk_userid=u.id \
-    WHERE title LIKE ?;';
+    WHERE title LIKE ? OR description LIKE ?;';
     searchTerm = "%"+searchTerm+"%";
-    db.query(_sql, [searchTerm])
+    db.query(_sql, [searchTerm, searchTerm])
     .then(([results, fields]) => {
         resp.json(results);
+    })
+    .catch((err) => next(err));
+});
+
+router.get('/getRecentPosts', (req, resp, next) => {
+    let _sql = 'SELECT p.id, p.title, p.description, p.thumbnail, u.username, p.created \
+    FROM posts p \
+    JOIN users u on p.fk_userid=u.id \
+    ORDER BY p.created DESC\
+    LIMIT 8'
+    db.query(_sql)
+    .then(([results, fields]) => {
+        resp.json(results);
+    })
+    .catch((err) => next(err));
+});
+
+router.get("/imagePost/:id", (req, resp, next) => {
+    resp.sendFile("imagepost.html", {root: "public/html" });
+});
+
+router.get('/getPostById/:id', (req, resp, next) => {
+    let _id = req.params.id;
+    let _sql = "SELECT p.id, p.title, p.description, p.photopath, u.username, p.created \
+    FROM posts p \
+    JOIN users u on p.fk_userid=u.id \
+    WHERE p.id=?;";
+    db.query(_sql, _id)
+    .then(([results, fields]) => {
+        resp.json(results[0]);
     })
     .catch((err) => next(err));
 })
