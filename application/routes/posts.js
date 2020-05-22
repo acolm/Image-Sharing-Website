@@ -40,10 +40,10 @@ router.post('/createPost', uploader.single('uploadImage') ,(req, resp, next) => 
     .then(([results, fields]) => {
         if(results && results.affectedRows){
             successPrint('new post created');
-            resp.json({status:"OK", message:"post was created", "redirect": "/"});
+            resp.json({status:"OK", message:"post was created", redirect: "/"});
             //resp.redirect('/');
         }else{
-            resp.json({status:"BAD", message:"post was not created", "redirect": "/postimage"});
+            resp.json({status:"OK", message:"post was not created", redirect: "/postimage"});
             //next(Error('post was not created'));
         }
     })

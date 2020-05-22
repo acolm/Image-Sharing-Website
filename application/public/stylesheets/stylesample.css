@@ -29,12 +29,14 @@ body{
 .grid-item{
     background-color: #d3d6f3;
     font-family: Arial, Helvetica, sans-serif;
+    color: #375ebf;
     font-size: large;
     padding: 10px;
     text-align: center;
 }
 .grid-item-extra{
     margin: 10px 100px;
+    color:#375ebf;
 }
 .textbox{
     width: 95%;
@@ -104,17 +106,21 @@ body{
     height:35%;
     width: 100%;
     background-color: #094074;
+    font-weight: 500;
     margin:0;
 }
 
 .card-title {
     margin: 0;
     padding-top: 5px;
+    color: white;
 }
 
 .card-text {
     padding-left:15px;
     text-align: left;
+    margin-bottom: 0;
+    color: white;
 }
 
 .card a {

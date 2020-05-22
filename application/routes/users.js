@@ -11,8 +11,21 @@ router.post("/register", (req, resp, next) => {
   let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
+  let password2 = req.body.password2;
 
-  db.execute("SELECT * FROM users WHERE username=?;", [username])
+  function message() {
+    var SettingS = "toolbar=no,menubar=no,scrollbars=no,resizable=yes,width =400, height=400, top=100, left=l00";
+    var PopUp = open("localhost:3000/registration", "box", SettingS);
+  }
+
+  if(password !== password2){
+    //resp.json({status:"BAD", message:"Please Have passwords match"});
+    window.onload=popUp;
+    resp.redirect('/registration');
+    echo ("Passwords did not match");
+  }
+  else{
+    db.execute("SELECT * FROM users WHERE username=?;", [username])
     .then(([results, fields]) => {
       if (results && results.length==0){
         return db.execute("SELECT * FROM users WHERE email=?;", [email]);
@@ -61,6 +74,7 @@ router.post("/register", (req, resp, next) => {
         next(err);
       }
     });
+  }
 });
 
 router.post("/login", (req, resp, next) => {
@@ -72,8 +86,8 @@ router.post("/login", (req, resp, next) => {
   .then(([results, fields]) => {
     if(results && results.length == 1){
       let hPassword = results[0].password;
-      console.log(results);
-      console.log(results[0]);
+      // console.log(results);
+      // console.log(results[0]);
       userID = results[0].id;
       return bcrypt.compare(password, hPassword);
     }else{

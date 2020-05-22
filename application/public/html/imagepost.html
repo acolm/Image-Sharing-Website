@@ -54,7 +54,7 @@
       .then((dataAsObject) => {
         console.log(dataAsObject);
         console.log(dataAsObject.photopath);
-        document.getElementById('image-post-image').src = dataAsObject.photopath;
+        document.getElementById('image-post-image').src = "/"+dataAsObject.photopath;
         document.getElementById('image-post-title-text').textContent = dataAsObject.title;
         document.getElementById('image-post-author').textContent = dataAsObject.username;
         document.getElementById('image-post-date').textContent = dataAsObject.created;

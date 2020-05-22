@@ -25,9 +25,11 @@ Please follow the instructions below and fill in the information requested when 
 4. npm bcrypt
 5. npm install express-session express-mysql-session
 6. npm i multer sharp
-8.
+8.The database for mysql is in the config folder in application
 9.
 
 ## Run Instructions
-1. steps here
-2. steps here 
+1. npm start
+2. 
+
+The blue squre next to the search bar is the search button, could not get the icon to popup
