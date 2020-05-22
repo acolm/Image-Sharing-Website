@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
+</head>
+
+<body>
+    <div class="logo">
+        <h1>Photos</h1>
+    </div>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="menu-area">
+            <ul>
+              <li><a href="/" class="home">Home</a></li>
+              <li>
+                <input id="search-text" name="" type="text" />
+                <div id="text-bar-icon">
+                  <i class="fas fa-search"></i>
+                </div>
+              </li>
+              <li><a href="/postimage">Post</a></li>
+              <li><a href="/login" id="authenticate-button" name="nav-items anchor-buttons">Login</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div>
+        <div>
+            <div style="color: black">500 Server Internal Error. <br /> Oops something went wrong. Please try
+            again laster or contact site admin.</div>
+        </div>
+    </div>
+    <script>
+      function createCard(data){
+        return `<div id=post-${data.id} class="card"> \
+                  <img class="card-image" src="${data.thumbnail}" /> \
+                  <div class="card-body"> \
+                    <p class="card-title">${data.title}</p> \
+                    <p class="card-text">${data.description}</p> \
+                    <a href="/posts/imagepost/${data.id}" class="anchor-buttons">Details</a> \
+                  </div> \
+                </div>`;
+      }
+      function runSearch() {
+        let searchTerm = document.getElementById('search-text').value;
+        let searchURL = 'http://localhost:3000/posts/search/'+searchTerm;
+        console.log(searchURL);
+        fetch(searchURL)
+        .then((data) => data.json())
+        .then((dataAsObject) => {
+          console.log(dataAsObject);
+          let _html = "";
+          dataAsObject.forEach((post) => {
+            _html += createCard(post);
+          })
+          document.getElementById('main-content').innerHTML = _html;
+        })
+        .catch((err) => console.log(err));
+      }
+      document.getElementById('text-bar-icon').onclick = runSearch;
+  
+      fetch('http://localhost:3000/posts/getRecentPosts/')
+        .then((data) => data.json())
+        .then((dataAsObject) => {
+          console.log(dataAsObject);
+          let _html = "";
+          dataAsObject.forEach((post) => {
+            _html += createCard(post);
+          })
+          document.getElementById('main-content').innerHTML = _html;
+        })
+        .catch((err) => console.log(err));
+    </script>
+</body>
+</html>

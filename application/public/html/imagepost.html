@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesample.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/post-style.css">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="logo">
+        <h1>Photos</h1>
+    </div>
+    <header>
+        <div class="container">
+          <nav>
+            <div class="menu-area">
+              <ul>
+                <li><a href="/" class="home">Home</a></li>
+                <li>
+                  <input id="search-text" name="" type="text" />
+                  <div id="text-bar-icon">
+                    <i class="fas fa-search"></i>
+                  </div>
+                </li>
+                <li><a href="/postimage">Post</a></li>
+                <li><a href="/login" id="authenticate-button" name="nav-items anchor-buttons">Login</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+    </header>
+    <div id="post-container">
+      <img id="image-post-image" src="">
+      <div id="info-message-grid">
+        <div id="info">
+          <header id="image-post-title">
+            <h2 id="image-post-title-text"></h2>
+          </header>
+          <div id="image-post-author" class="info-tags"></div>
+          <div id="image-post-date" class="info-tags"></div>
+          <div id="image-post-desc" class="info-tags"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      //function buildMessage(msgData){
+
+      let url = document.URL.split('/');
+      let _id =  url[url.length-1];
+      let postURL = "http://localhost:3000/posts/getPostById/"+_id;
+      fetch(postURL)
+      .then((data) => data.json())
+      .then((dataAsObject) => {
+        console.log(dataAsObject);
+        console.log(dataAsObject.photopath);
+        document.getElementById('image-post-image').src = "/"+dataAsObject.photopath;
+        document.getElementById('image-post-title-text').textContent = dataAsObject.title;
+        document.getElementById('image-post-author').textContent = dataAsObject.username;
+        document.getElementById('image-post-date').textContent = dataAsObject.created;
+        document.getElementById('image-post-desc').textContent = dataAsObject.description;
+      })
+      .catch((err) => console.log(err));
+      //}
+    </script>
+</body>
+</html>

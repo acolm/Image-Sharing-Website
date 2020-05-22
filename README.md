@@ -10,18 +10,26 @@ Please follow the instructions below and fill in the information requested when 
 
 |               | Information   |
 |:-------------:|:-------------:|
-| Student Name  | name-here     |
-| Student ID    | id-here       |
-| Student Email | email-here    |
+| Student Name  | Aaron Colmenares     |
+| Student ID    | 916913613       |
+| Student Email | acolmenares@mail.sfsu.edu    |
 
 
 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
-2. steps here
+1. run npm i in the application folder
+2. npm install colors
+3. npm install mysql2
+4. npm bcrypt
+5. npm install express-session express-mysql-session
+6. npm i multer sharp
+8.The database for mysql is in the config folder in application
+9.
 
 ## Run Instructions
-1. steps here
-2. steps here 
+1. npm start
+2. 
+
+The blue squre next to the search bar is the search button, could not get the icon to popup
